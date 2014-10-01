@@ -940,16 +940,19 @@ class SliceAnnotations(object):
 
 
   def formatDICOMTime(self, time):
-    studyH = time[:2]
-    if int(studyH) > 12 :
-      studyH = str (int(studyH) - 12)
-      clockTime = ' PM'
-    else:
-      studyH = studyH
-      clockTime = ' AM'
-    studyM = time[2:4]
-    studyS = time[4:6]
-    return studyH + ':' + studyM  + ':' + studyS +clockTime
+    standardTime = ''
+    if time != '':
+      studyH = time[:2]
+      if int(studyH) > 12 :
+        studyH = str (int(studyH) - 12)
+        clockTime = ' PM'
+      else:
+        studyH = studyH
+        clockTime = ' AM'
+      studyM = time[2:4]
+      studyS = time[4:6]
+      standardTime = studyH + ':' + studyM  + ':' + studyS +clockTime
+    return standardTime
 
   def fitText(self,text,textSize):
     if len(text) > textSize:
